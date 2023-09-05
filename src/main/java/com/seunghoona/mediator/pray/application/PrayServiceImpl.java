@@ -1,11 +1,8 @@
 package com.seunghoona.mediator.pray.application;
 
-import com.seunghoona.mediator.pray.domain.Pray;
 import com.seunghoona.mediator.pray.domain.PrayRepository;
 import com.seunghoona.mediator.pray.dto.PrayRequest;
 import com.seunghoona.mediator.pray.dto.PrayResponse;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PrayApiServiceImpl implements
-	PrayApiService {
+public class PrayServiceImpl implements
+	PrayService {
 
 	private final PrayRepository prayRepository;
 

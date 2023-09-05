@@ -1,7 +1,7 @@
 package com.seunghoona.mediator.pray.api;
 
 import com.seunghoona.mediator.module.log.Description;
-import com.seunghoona.mediator.pray.application.PrayApiService;
+import com.seunghoona.mediator.pray.application.PrayService;
 import com.seunghoona.mediator.pray.application.PrayTakeService;
 import com.seunghoona.mediator.pray.dto.PrayRequest;
 import com.seunghoona.mediator.pray.dto.PrayResponse;
@@ -21,19 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/prays")
 public class PrayApiController {
 
-	private final PrayApiService prayApiService;
+	private final PrayService prayService;
 	private final PrayTakeService prayTakeService;
 
 	@GetMapping
 	@Description("기도 다건 조회")
 	public ResponseEntity<Page<PrayResponse>> getPrays(PrayRequest prayRequest, Pageable pageable) {
-		return ResponseEntity.ok(prayApiService.getPrays(prayRequest, pageable));
+		return ResponseEntity.ok(prayService.getPrays(prayRequest, pageable));
 	}
 
 	@GetMapping("{id}")
 	@Description("기도 단건 조회")
 	public ResponseEntity<PrayResponse> getPray(@PathVariable(value = "id") Long id) {
-		return ResponseEntity.ok(prayApiService.getPray(id));
+		return ResponseEntity.ok(prayService.getPray(id));
 	}
 
 	@PostMapping
