@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class PrayApiController {
 		return ResponseEntity.created(uri).body(prayService.takePray(prayRequest));
 	}
 
-	@PostMapping
+	@DeleteMapping
 	@Description("기도 삭제")
 	public ResponseEntity<Void> removePray(Long id) {
 		prayService.remove(id);
