@@ -5,8 +5,11 @@ import com.seunghoona.mediator.pray.domain.PrayRepository;
 import com.seunghoona.mediator.pray.dto.PrayRequest;
 import com.seunghoona.mediator.pray.dto.PrayResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,14 +20,15 @@ public class PrayApiServiceImpl implements
 	private final PrayRepository prayRepository;
 
 	@Override
-	public List<PrayResponse> getPrays(PrayRequest prayRequest) {
-		return PrayResponse.ofList(prayRepository.findAll());
+	public Page<PrayResponse> getPrays(PrayRequest prayRequest, Pageable pageable) {
+		var findPrays = prayRepository.findAll(pageable);
+		return PrayResponse.ofList(findPrays);
 	}
 
 	@Override
 	public PrayResponse getPray(Long id) {
-		var pray = prayRepository.findById(id)
+		var findPray = prayRepository.findById(id)
 			.orElseThrow(EntityNotFoundException::new);
-		return PrayResponse.of(pray);
+		return PrayResponse.of(findPray);
 	}
 }

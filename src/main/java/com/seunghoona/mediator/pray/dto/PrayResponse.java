@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
 @Data
 @Builder
@@ -22,9 +23,7 @@ public class PrayResponse {
 			.build();
 	}
 
-	public static List<PrayResponse> ofList(List<Pray> prays) {
-		return prays.stream()
-			.map(PrayResponse::of)
-			.collect(Collectors.toList());
+	public static Page<PrayResponse> ofList(Page<Pray> prays) {
+		return prays.map(PrayResponse::of);
 	}
 }
