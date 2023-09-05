@@ -28,4 +28,12 @@ public class PrayServiceImpl implements
 			.orElseThrow(EntityNotFoundException::new);
 		return PrayResponse.of(findPray);
 	}
+
+	@Override
+	public void remove(Long id) {
+		var findPray = prayRepository.findById(id)
+			.orElseThrow(EntityNotFoundException::new);
+
+		prayRepository.delete(findPray);
+	}
 }

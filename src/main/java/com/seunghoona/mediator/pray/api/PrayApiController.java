@@ -43,4 +43,12 @@ public class PrayApiController {
 		return ResponseEntity.created(uri).body(prayTakeService.takePray(prayRequest));
 	}
 
+	@PostMapping
+	@Description("기도 삭제")
+	public ResponseEntity<Void> removePray(Long id) {
+
+		prayService.remove(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }
