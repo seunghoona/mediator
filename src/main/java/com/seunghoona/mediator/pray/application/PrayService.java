@@ -11,6 +11,8 @@ public interface PrayService {
 
 	PrayResponse getPray(Long prayRequest);
 
+	PrayResponse takePray(PrayRequest prayRequest);
+
 	void remove(Long id);
 
 }

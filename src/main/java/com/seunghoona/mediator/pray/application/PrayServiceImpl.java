@@ -30,6 +30,12 @@ public class PrayServiceImpl implements
 	}
 
 	@Override
+	public PrayResponse takePray(PrayRequest prayRequest) {
+		var pray = prayRequest.toPray();
+		return PrayResponse.of(prayRepository.save(pray));
+	}
+
+	@Override
 	public void remove(Long id) {
 		var findPray = prayRepository.findById(id)
 			.orElseThrow(EntityNotFoundException::new);

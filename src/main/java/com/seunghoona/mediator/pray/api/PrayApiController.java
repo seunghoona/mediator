@@ -2,7 +2,6 @@ package com.seunghoona.mediator.pray.api;
 
 import com.seunghoona.mediator.module.log.Description;
 import com.seunghoona.mediator.pray.application.PrayService;
-import com.seunghoona.mediator.pray.application.PrayTakeService;
 import com.seunghoona.mediator.pray.dto.PrayRequest;
 import com.seunghoona.mediator.pray.dto.PrayResponse;
 import java.net.URI;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrayApiController {
 
 	private final PrayService prayService;
-	private final PrayTakeService prayTakeService;
 
 	@GetMapping
 	@Description("기도 다건 조회")
@@ -40,13 +38,12 @@ public class PrayApiController {
 	@Description("기도 생성")
 	public ResponseEntity<PrayResponse> createPray(PrayRequest prayRequest) {
 		var uri = URI.create("");
-		return ResponseEntity.created(uri).body(prayTakeService.takePray(prayRequest));
+		return ResponseEntity.created(uri).body(prayService.takePray(prayRequest));
 	}
 
 	@PostMapping
 	@Description("기도 삭제")
 	public ResponseEntity<Void> removePray(Long id) {
-
 		prayService.remove(id);
 		return ResponseEntity.noContent().build();
 	}
