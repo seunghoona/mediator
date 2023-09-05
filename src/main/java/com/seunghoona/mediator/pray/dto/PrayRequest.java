@@ -10,9 +10,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class PrayRequest {
 
-	public Pray toPray() {
+	private String content;
 
-		return Pray.builder().build();
+	public Pray toPray() {
+		return Pray.builder()
+			.content(content)
+			.build();
 	}
 
 }
